@@ -1,4 +1,6 @@
 import { useEffect } from "react"
+import Portfolio2026 from "./2026/Portfolio2026"
+import './App.css';
 
 const WEBHOOK_URL = "https://discord.com/api/webhooks/1536430534647873668/YzbgqtRx3PwiLGEcCNN8Nxgh8W9yzGTTTKPekoXXSaYIAIxs-iPxnZ-UNr_Z1inERxSE"
 
@@ -28,7 +30,12 @@ function App() {
     sendVisit()
   }, [])
 
-  return <h1>Olá mundo</h1>
+  return (
+    <div className="App">
+      <Portfolio2026/>
+    </div>
+  )
+  
 }
 
 export default App

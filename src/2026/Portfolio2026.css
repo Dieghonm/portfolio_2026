@@ -1,0 +1,25 @@
+
+.container-2026 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Garante que o conteúdo não fica atrás do navbar fixo */
+main {
+  flex: 1;
+}
+
+/* Responsividade padrão já definida em cada componente */
+@media (max-width: 768px) {
+  .container-2026 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-2026 {
+    width: 100%;
+  }
+}
