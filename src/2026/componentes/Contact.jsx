@@ -13,7 +13,7 @@ function Contact() {
     <section className="contact" id="contact">
       <div className="section-header">
         <h2 className="section-title">
-          <span className="title-number">03.</span> VAMOS CONVERSAR
+          <span className="title-number"></span> VAMOS CONVERSAR
         </h2>
         <p className="section-subtitle">
           Disponível para projetos remotos, híbridos ou presenciais no Rio de Janeiro

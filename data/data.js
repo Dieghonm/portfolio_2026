@@ -48,5 +48,12 @@ export const projectsData = [
   //   "description": "Descrição do projeto 5",
   //   "image": "caminho-para/imagem-projeto5.jpg",
   //   "url": "https://www.example.com/projeto5"
-  // }
+  // }    
+  {
+      emoji: "📊",
+      title: "Data Vision",
+      desc: "Plataforma de visualização e análise de dados com dashboards interativos, filtros dinâmicos e múltiplos tipos de gráficos.",
+      tech: ["Python", "Pandas", "Matplotlib", "Streamlit"],
+      link: "https://github.com/Dieghonm/DataVision"
+    },
 ]

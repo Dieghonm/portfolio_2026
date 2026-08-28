@@ -29,7 +29,7 @@ function Skills() {
     <section className="skills" id="skills">
       <div className="section-header">
         <h2 className="section-title">
-          <span className="title-number">01.</span> TECH STACK
+          <span className="title-number"></span> TECH STACK
         </h2>
         <p className="section-subtitle">
           Expertise técnico em desenvolvimento Full Stack com foco em criar experiências digitais memoráveis
