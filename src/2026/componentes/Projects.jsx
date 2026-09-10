@@ -13,6 +13,11 @@ import doricaPC from '../../../data/Projetos/Dorica-Vitrine/pc.png';
 import doricaMobile0 from '../../../data/Projetos/Dorica-Vitrine/mob0.jpeg';
 import doricaMobile1 from '../../../data/Projetos/Dorica-Vitrine/mob1.jpeg';
 
+import hit_finder1 from '../../../data/Projetos/hit_finder/hit_finder1.jpeg';
+import hit_finder2 from '../../../data/Projetos/hit_finder/hit_finder2.jpeg';
+import hit_finder3 from '../../../data/Projetos/hit_finder/hit_finder3.jpeg';
+import hit_finder4 from '../../../data/Projetos/hit_finder/hit_finder4.jpeg';
+
 function Projects() {
   const projectsData = [
     {
@@ -31,8 +36,8 @@ function Projects() {
       link: "https://dieghonm.github.io/Dorica-Vitrine/"
     },
     {
-      emoji: "🎤",
       title: "Karaokê Finder",
+      imgns: [hit_finder1, hit_finder2,hit_finder3,hit_finder4],
       desc: "App mobile para busca e organização de músicas de karaokê com sistema de favoritos e filtros inteligentes.",
       tech: ["React Native", "Expo", "Context API"],
       link: "https://github.com/Dieghonm/hit_finder"

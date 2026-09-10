@@ -16,6 +16,8 @@
     border: var(--border-width) solid;
     transition: all 0.3s ease;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .project-card:nth-child(1) { border-color: var(--color-primary); }
@@ -45,6 +47,9 @@
 
 .project-content {
     padding: 0 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .project-title {
@@ -59,6 +64,7 @@
     line-height: 1.6;
     margin-bottom: 1.5rem;
     font-size: 0.95rem;
+    height: 100px;
 }
 
 .project-tech {
@@ -75,6 +81,7 @@
     font-weight: 600;
     color: var(--text-secondary);
     border-radius: 4px;
+    
 }
 
 .project-link {
@@ -82,19 +89,37 @@
     align-items: center;
     gap: 0.5rem;
     padding: 1rem 2rem;
-    background: var(--color-primary);
     color: var(--bg-main);
     text-decoration: none;
     font-weight: 700;
     text-transform: uppercase;
     transition: all 0.3s ease;
     border-radius: 2px;
+    margin-top: auto;
+    width: 210px;
+    align-self: center;
 }
 
 .project-link:hover {
     transform: translate(-4px, -4px);
-    box-shadow: 4px 4px 0px 0px var(--color-secondary);
 }
+
+/* Cor de fundo do botão, seguindo o padrão do card */
+.project-card:nth-child(1) .project-link { background: var(--color-primary); }
+.project-card:nth-child(2) .project-link { background: var(--color-secondary); }
+.project-card:nth-child(3) .project-link { background: var(--color-secondary); }
+.project-card:nth-child(4) .project-link { background: var(--color-primary); }
+
+/* Shadow no hover, com a cor oposta — igual ao card */
+.project-card:nth-child(1):hover .project-link:hover { box-shadow: 4px 4px 0px 0px var(--color-secondary); }
+.project-card:nth-child(2):hover .project-link:hover { box-shadow: 4px 4px 0px 0px var(--color-primary); }
+.project-card:nth-child(3):hover .project-link:hover { box-shadow: 4px 4px 0px 0px var(--color-primary); }
+.project-card:nth-child(4):hover .project-link:hover { box-shadow: 4px 4px 0px 0px var(--color-secondary); }
+
+.project-card:nth-child(1):hover { box-shadow: var(--shadow-brutal) var(--color-secondary); }
+.project-card:nth-child(2):hover { box-shadow: var(--shadow-brutal) var(--color-primary); }
+.project-card:nth-child(3):hover { box-shadow: var(--shadow-brutal) var(--color-primary); }
+.project-card:nth-child(4):hover { box-shadow: var(--shadow-brutal) var(--color-secondary); }
 
 .projects-footer {
     text-align: center;

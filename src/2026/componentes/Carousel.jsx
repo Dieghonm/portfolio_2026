@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import '../styles/Carousel.css';
 import YouTubeShort from './YouTubeShort';
 
-function Carousel({ items, itemsPerView = 2, autoPlay = true, interval = 3000 }) {
+function Carousel({ items, itemsPerView = 2, autoPlay = true, interval = 300000 }) {
   if (!items || items.length === 0) return null;
 
   const canLoop = items.length > itemsPerView;
@@ -45,20 +45,25 @@ function Carousel({ items, itemsPerView = 2, autoPlay = true, interval = 3000 })
 
   useEffect(() => {
     if (!transitionOn) {
-      const frame = requestAnimationFrame(() => setTransitionOn(true));
+      const frame = requestAnimationFrame(() => {
+        requestAnimationFrame(() => setTransitionOn(true));
+      });
       return () => cancelAnimationFrame(frame);
     }
   }, [transitionOn]);
 
-  const offset = -(index * (100 / itemsPerView));
+  const offset = -(index * (100 / extended.length));
 
   const renderSlide = (item, i) => {
+
     if (item.type === 'video') {
       return (
         <YouTubeShort videoId={item.videoId} />
       );
     }
-    return <img className="carousel-media" src={item.image} alt={item.alt || ''} />;
+    return (
+    <img className="carousel-media" src={item.image} alt={item.alt || ''} />
+  );
   };
 
   return (
