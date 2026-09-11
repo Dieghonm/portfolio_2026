@@ -22,7 +22,7 @@ function Hero() {
 
         <div className="hero-description">
           <p>
-            Transformo ideias em produtos digitais excepcionais. Co-fundador da Duo Estúdio,
+            Transformo ideias em produtos digitais excepcionais.
             desenvolvendo apps mobile do design ao deploy com React Native, TypeScript e Python.
           </p>
         </div>

@@ -18,6 +18,10 @@ import hit_finder2 from '../../../data/Projetos/hit_finder/hit_finder2.jpeg';
 import hit_finder3 from '../../../data/Projetos/hit_finder/hit_finder3.jpeg';
 import hit_finder4 from '../../../data/Projetos/hit_finder/hit_finder4.jpeg';
 
+import Agrymax1 from '../../../data/Projetos/Agrymax/Agrymax1.png';
+import Agrymax2 from '../../../data/Projetos/Agrymax/Agrymax2.png';
+import Agrymax3 from '../../../data/Projetos/Agrymax/Agrymax3.png';
+
 function Projects() {
   const projectsData = [
     {
@@ -27,6 +31,13 @@ function Projects() {
       desc: "App mobile de jornada emocional com interface intuitiva, gamificação e dashboards. Desenvolvido end-to-end do design ao deploy na App Store e Play Store.",
       tech: ["React Native", "TypeScript", "Python", "PostgreSQL"],
       link: "https://github.com/Dieghonm/Eden-Map"
+    },
+    {
+      title: "Agrymax",
+      imgns: [Agrymax1, Agrymax2, Agrymax3],
+      desc: "Plataforma de Big Data e Ciência de Dados voltada ao agronegócio, fornecendo análises climáticas preditivas e balanço hídrico para otimização de plantios em todo o Brasil.",
+      tech: ["React", "Python", "Flask", "MySQL"],
+      link: "https://www.agrymax.com.br/login"
     },
     {
       title: "Dórica Vitrine",
@@ -41,13 +52,6 @@ function Projects() {
       desc: "App mobile para busca e organização de músicas de karaokê com sistema de favoritos e filtros inteligentes.",
       tech: ["React Native", "Expo", "Context API"],
       link: "https://github.com/Dieghonm/hit_finder"
-    },
-    {
-      emoji: "🎲",
-      title: "Morpheus Project",
-      desc: "Plataforma Full Stack para mestres de RPG com gerenciamento de personagens, campanhas e histórias.",
-      tech: ["React", "Python", "Flask", "MySQL"],
-      link: "https://github.com/Dieghonm/morpheus-project"
     }
   ];
 
