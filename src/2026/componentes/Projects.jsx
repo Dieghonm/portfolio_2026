@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/Projects.css'
 import Carousel from './Carousel';
 
@@ -23,9 +23,12 @@ import Agrymax2 from '../../../data/Projetos/Agrymax/Agrymax2.png';
 import Agrymax3 from '../../../data/Projetos/Agrymax/Agrymax3.png';
 
 function Projects() {
+  const [activeTab, setActiveTab] = useState('front');
+
   const projectsData = [
     {
       title: "Eden Map",
+      category: "front",
       media: [
         { type: 'image', src: edenInitial, format: 'mobile' },
         { type: 'image', src: edenHome, format: 'mobile' },
@@ -33,14 +36,24 @@ function Projects() {
         { type: 'image', src: edenMedit, format: 'mobile' },
         { type: 'image', src: edenTrilha, format: 'mobile' },
         { type: 'image', src: edenVideo, format: 'mobile' },
-        // { type: 'video', videoId: 'UOKAQUN2pHc' },
       ],
-      desc: "App mobile de jornada emocional com interface intuitiva, gamificação e dashboards. Desenvolvido end-to-end do design ao deploy na App Store e Play Store.",
-      tech: ["React Native", "TypeScript", "Python", "PostgreSQL"],
+      desc: "App mobile de desenvolvimento pessoal e bem-estar emocional, com jornadas de 12 semanas, testes de autoavaliação e trilhas personalizadas. Interface com gamificação, dashboards de progresso e conteúdo de meditação e respiração guiada.",
+      tech: ["React Native", "TypeScript", "Expo"],
       link: "https://github.com/Dieghonm/Eden-Map"
     },
     {
+      title: "Back Eden Map",
+      category: "back",
+      media: [
+        { type: 'image', src: edenInitial, format: 'mobile' },
+      ],
+      desc: "API RESTful que sustenta o Eden Map: autenticação JWT com refresh token, recuperação de senha por e-mail, rate limiting por IP. Arquitetura em camadas.",
+      tech: ["Python", "FastAPI", "SQLAlchemy", "PostgreSQL", "JWT", "Pydantic"],
+      link: "https://github.com/Dieghonm/Back-Eden-Map"
+    },
+    {
       title: "Agrymax",
+      category: "front",
       media: [
         { type: 'image', src: Agrymax1, format: 'pc' },
         { type: 'image', src: Agrymax2, format: 'pc' },
@@ -50,30 +63,56 @@ function Projects() {
       tech: ["React", "Python", "Flask", "MySQL"],
       link: "https://www.agrymax.com.br/login"
     },
+        {
+      title: "Agrymax",
+      category: "back",
+      media: [
+        { type: 'image', src: Agrymax1, format: 'pc' },
+        { type: 'image', src: Agrymax2, format: 'pc' },
+        { type: 'image', src: Agrymax3, format: 'pc' },
+      ],
+      desc: "Plataforma de Big Data e Ciência de Dados voltada ao agronegócio, fornecendo análises climáticas preditivas e balanço hídrico para otimização de plantios em todo o Brasil.",
+      tech: ["Python", "Streamlit", "Scikit-learn", "Pandas"],
+      link: "https://www.agrymax.com.br/login"
+    },
     {
       title: "Dórica Vitrine",
+      category: "front",
       media: [
         { type: 'image', src: doricaMobile0, format: 'mobile' },
         { type: 'image', src: doricaMobile1, format: 'mobile' },
         { type: 'image', src: doricaPC, format: 'pc' },
       ],
-      desc: "Plataforma de visualização dos produtos mais vendidos dos mais de 20 catalogos de diferentes fabricas representados pela Dórica representações.",
-      tech: ["react", "CSS", "JavaScript"],
+      desc: "Vitrine digital responsiva para consulta dos produtos mais vendidos entre mais de 20 catálogos de fábricas representadas pela Dórica Representações, com navegação otimizada para mobile e desktop.",
+      tech: ["React", "CSS", "JavaScript"],
       link: "https://dieghonm.github.io/Dorica-Vitrine/"
     },
     {
       title: "Karaokê Finder",
+      category: "front",
       media: [
         { type: 'image', src: hit_finder1, format: 'mobile' },
         { type: 'image', src: hit_finder2, format: 'mobile' },
         { type: 'image', src: hit_finder3, format: 'mobile' },
         { type: 'image', src: hit_finder4, format: 'mobile' },
       ],
-      desc: "App mobile para busca e organização de músicas de karaokê com sistema de favoritos e filtros inteligentes.",
+      desc: "App mobile para busca e organização de músicas de karaokê, com sistema de favoritos e filtros inteligentes para facilitar a escolha na hora da festa.",
       tech: ["React Native", "Expo", "Context API"],
       link: "https://github.com/Dieghonm/hit_finder"
+    },
+    {
+      title: "Data Vision",
+      category: "back",
+      media: [
+        // adicione screenshots aqui
+      ],
+      desc: "Plataforma web que automatiza todo o pipeline de Machine Learning: carregamento e análise exploratória de dados, pré-processamento, balanceamento de classes, seleção de features, treinamento e ajuste de hiperparâmetros.",
+      tech: ["Python", "Streamlit", "Scikit-learn", "XGBoost", "Pandas", "Plotly"],
+      link: "https://github.com/Dieghonm/DataVision"
     }
   ];
+
+  const filteredProjects = projectsData.filter(p => p.category === activeTab);
 
   const buildMediaItems = (project) => {
     return (project.media || []).map((item) => {
@@ -105,12 +144,27 @@ function Projects() {
         </p>
       </div>
 
+      <div className="projects-tabs">
+        <button
+          className={`tab-btn ${activeTab === 'front' ? 'active' : ''}`}
+          onClick={() => setActiveTab('front')}
+        >
+          Frontend / Mobile
+        </button>
+        <button
+          className={`tab-btn ${activeTab === 'back' ? 'active' : ''}`}
+          onClick={() => setActiveTab('back')}
+        >
+          Backend / Dados
+        </button>
+      </div>
+
       <div className="projects-grid">
-        {projectsData.map((project, index) => {
+        {filteredProjects.map((project, index) => {
           const mediaItems = buildMediaItems(project);
 
           return (
-            <div className="project-card" key={index}>
+            <div className="project-card" key={project.title}>
               {mediaItems.length > 0 ? (
                 <Carousel
                   items={mediaItems}

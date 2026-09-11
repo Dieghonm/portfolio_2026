@@ -10,6 +10,60 @@
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
 }
+.projects-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 1rem 2.5rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: var(--border-width) solid;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 2px;
+    background: transparent;
+    border-color: var(--color-secondary);
+    color: var(--color-secondary);
+}
+
+.tab-btn:hover {
+    background: var(--color-secondary);
+    color: var(--bg-main);
+    transform: translate(-4px, -4px);
+    box-shadow: var(--shadow-brutal) var(--color-primary);
+}
+
+.tab-btn.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--bg-main);
+}
+
+.tab-btn.active:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: var(--shadow-brutal) var(--color-secondary);
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .projects-tabs {
+        gap: 1rem;
+    }
+
+    .tab-btn {
+        padding: 1rem 1.5rem;
+        font-size: 0.9rem;
+        flex: 1;
+        justify-content: center;
+    }
+}
 
 .project-card {
     background: var(--bg-card);
@@ -70,7 +124,6 @@
 .project-tech {
     display: flex;
     flex-wrap: wrap;
-    align-self: center;
     gap: 0.5rem;
     margin-bottom: 1.5rem;
 }
