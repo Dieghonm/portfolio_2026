@@ -30,7 +30,6 @@
   justify-content: center;
   gap: 8px;
   overflow: hidden;
-  
 }
 
 .carousel-slide-group .carousel-media {
@@ -86,3 +85,32 @@
 
 .carousel-btn.prev { margin-right: 1rem; }
 .carousel-btn.next { margin-left: 1rem; }
+
+
+@media (max-width: 480px) {
+  .carousel {
+    max-height: 240px;
+  }
+
+  .carousel-slide-group .carousel-media.format-pc {
+    max-height: 220px;
+    
+  }
+
+  .carousel-btn {
+    width: 20px;
+    height: 20px;
+    font-size: 1.2rem;
+    border: 2px solid #00000000;
+  }
+
+  .carousel-slide-group .carousel-media.format-mobile {
+  height: 75%;
+  width: 60%;
+  flex: 1 1 0;
+  min-width: 0;
+  object-fit: cover;
+  
+}
+
+}

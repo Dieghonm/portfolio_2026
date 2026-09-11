@@ -20,7 +20,7 @@ function Hero() {
         <div className="hero-description">
         <p>
           Transformo ideias em produtos digitais: crio soluções para problemas 
-          cotidianos, do entendimento do problema ao desenvolvimento final da 
+          cotidianos, do entendimento das necessidades ao desenvolvimento final da 
           aplicação, com React, React Native, Python e análise de dados para 
           simplificar processos. Gosto de entender o contexto antes de sair 
           codando — cada projeto tem suas particularidades, e a solução certa 
