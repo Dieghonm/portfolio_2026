@@ -61,8 +61,9 @@
     padding: 0.6rem 1rem;
     background: var(--bg-secondary);
     border: 2px solid var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 1.05rem;
     font-weight: 600;
+    min-width: 100px;
     color: var(--text-secondary);
     transition: all 0.3s ease;
     border-radius: 4px;
@@ -74,6 +75,58 @@
     border-color: var(--color-primary);
     color: var(--color-primary);
 } 
+
+.skill-tag {
+    position: relative;
+}
+
+.skill-tag::after {
+    content: attr(data-description);
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    width: 220px;
+    padding: 0.75rem 1rem;
+    background: var(--bg-main);
+    color: var(--text-primary);
+    border: 2px solid var(--color-primary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1.4;
+    white-space: normal;
+    text-align: center;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.skill-tag::before {
+    content: "";
+    position: absolute;
+    bottom: calc(100% + 3px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 7px solid transparent;
+    border-top-color: var(--color-primary);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    z-index: 11;
+}
+
+.skill-tag:hover::after,
+.skill-tag:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+.skill-tag:hover::after {
+    transform: translateX(-50%) translateY(0);
+}
 
 /* Responsive - Tablet */
 @media (max-width: 768px) {
