@@ -1,47 +1,99 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import '../styles/Carousel.css';
 import YouTubeShort from './YouTubeShort';
 
-function Carousel({ items, itemsPerView = 2, autoPlay = true, interval = 300000 }) {
-  if (!items || items.length === 0) return null;
+function buildSlides(items) {
+  const slides = [];
+  let mobileBuffer = [];
 
-  const canLoop = items.length > itemsPerView;
+  const flushBuffer = () => {
+    for (let i = 0; i < mobileBuffer.length; i += 2) {
+      slides.push(mobileBuffer.slice(i, i + 2));
+    }
+    mobileBuffer = [];
+  };
+
+  items.forEach((item) => {
+    if (item.type === 'image' && item.format === 'mobile') {
+      mobileBuffer.push(item);
+    } else {
+      flushBuffer();
+      slides.push([item]);
+    }
+  });
+  flushBuffer();
+
+  return slides;
+}
+
+function VideoSlot({ videoId, onPlay, onPause }) {
+  const ref = useRef(null);
+  return (
+    <YouTubeShort
+      ref={ref}
+      videoId={videoId}
+      onPlay={() => onPlay(ref.current)}
+      onPause={onPause}
+    />
+  );
+}
+
+function Carousel({ items, autoPlay = true, interval = 300000 }) {
+  const slides = useMemo(() => buildSlides(items || []), [items]);
+  const canLoop = slides.length > 1;
 
   const extended = canLoop
-    ? [...items.slice(-itemsPerView), ...items, ...items.slice(0, itemsPerView)]
-    : items;
+    ? [slides[slides.length - 1], ...slides, slides[0]]
+    : slides;
 
-  const [index, setIndex] = useState(canLoop ? itemsPerView : 0);
+  const [index, setIndex] = useState(canLoop ? 1 : 0);
   const [transitionOn, setTransitionOn] = useState(true);
+  const [videoPlaying, setVideoPlaying] = useState(false);
   const timeoutRef = useRef(null);
+  const activeVideoRef = useRef(null);
 
-  const goNext = () => setIndex((prev) => prev + 1);
-  const goPrev = () => setIndex((prev) => prev - 1);
+  const stopActiveVideo = () => {
+    if (activeVideoRef.current && activeVideoRef.current.pause) {
+      activeVideoRef.current.pause();
+    }
+    activeVideoRef.current = null;
+    setVideoPlaying(false);
+  };
+
+  const goNext = () => {
+    stopActiveVideo();
+    setIndex((prev) => prev + 1);
+  };
+
+  const goPrev = () => {
+    stopActiveVideo();
+    setIndex((prev) => prev - 1);
+  };
 
   useEffect(() => {
-    if (!autoPlay || !canLoop) return;
+    if (!autoPlay || !canLoop || videoPlaying) return;
     timeoutRef.current = setInterval(goNext, interval);
     return () => clearInterval(timeoutRef.current);
-  }, [autoPlay, interval, canLoop]);
+  }, [autoPlay, interval, canLoop, videoPlaying]);
 
   useEffect(() => {
     if (!canLoop) return;
 
-    if (index === extended.length - itemsPerView) {
+    if (index === extended.length - 1) {
       const t = setTimeout(() => {
         setTransitionOn(false);
-        setIndex(itemsPerView);
+        setIndex(1);
       }, 500);
       return () => clearTimeout(t);
     }
     if (index === 0) {
       const t = setTimeout(() => {
         setTransitionOn(false);
-        setIndex(items.length);
+        setIndex(slides.length);
       }, 500);
       return () => clearTimeout(t);
     }
-  }, [index, extended.length, itemsPerView, items.length, canLoop]);
+  }, [index, extended.length, slides.length, canLoop]);
 
   useEffect(() => {
     if (!transitionOn) {
@@ -52,19 +104,41 @@ function Carousel({ items, itemsPerView = 2, autoPlay = true, interval = 300000 
     }
   }, [transitionOn]);
 
+  if (!slides.length) return null;
+
   const offset = -(index * (100 / extended.length));
 
-  const renderSlide = (item, i) => {
-
-    if (item.type === 'video') {
-      return (
-        <YouTubeShort videoId={item.videoId} />
-      );
-    }
-    return (
-    <img className="carousel-media" src={item.image} alt={item.alt || ''} />
-  );
+  const handleVideoPlay = (ref) => {
+    activeVideoRef.current = ref;
+    setVideoPlaying(true);
   };
+
+  const handleVideoPause = () => {
+    activeVideoRef.current = null;
+    setVideoPlaying(false);
+  };
+
+  const renderSlide = (slideItems, slideKey) => (
+    <div className={`carousel-slide-group ${slideItems.length > 1 ? 'is-pair' : 'is-single'}`}>
+      {slideItems.map((item, i) =>
+        item.type === 'video' ? (
+          <VideoSlot
+            key={`${slideKey}-video-${i}`}
+            videoId={item.videoId}
+            onPlay={handleVideoPlay}
+            onPause={handleVideoPause}
+          />
+        ) : (
+          <img
+            key={`${slideKey}-img-${i}`}
+            className={`carousel-media format-${item.format || 'mobile'}`}
+            src={item.image}
+            alt={item.alt || ''}
+          />
+        )
+      )}
+    </div>
+  );
 
   return (
     <div className="carousel">
@@ -78,16 +152,16 @@ function Carousel({ items, itemsPerView = 2, autoPlay = true, interval = 300000 
           style={{
             transform: `translateX(${offset}%)`,
             transition: transitionOn ? 'transform 0.5s ease' : 'none',
-            width: `${(extended.length / itemsPerView) * 100}%`,
+            width: `${extended.length * 100}%`,
           }}
         >
-          {extended.map((item, i) => (
+          {extended.map((slideItems, i) => (
             <div
               className="carousel-slide"
               style={{ width: `${100 / extended.length}%` }}
               key={i}
             >
-              {renderSlide(item, i)}
+              {renderSlide(slideItems, i)}
             </div>
           ))}
         </div>

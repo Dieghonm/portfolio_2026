@@ -26,29 +26,49 @@ function Projects() {
   const projectsData = [
     {
       title: "Eden Map",
-      videos: ["UOKAQUN2pHc"],
-      imgns: [edenInitial, edenHome, edenResoiracao, edenMedit, edenTrilha, edenVideo ],
+      media: [
+        { type: 'image', src: edenInitial, format: 'mobile' },
+        { type: 'image', src: edenHome, format: 'mobile' },
+        { type: 'image', src: edenResoiracao, format: 'mobile' },
+        { type: 'image', src: edenMedit, format: 'mobile' },
+        { type: 'image', src: edenTrilha, format: 'mobile' },
+        { type: 'image', src: edenVideo, format: 'mobile' },
+        // { type: 'video', videoId: 'UOKAQUN2pHc' },
+      ],
       desc: "App mobile de jornada emocional com interface intuitiva, gamificação e dashboards. Desenvolvido end-to-end do design ao deploy na App Store e Play Store.",
       tech: ["React Native", "TypeScript", "Python", "PostgreSQL"],
       link: "https://github.com/Dieghonm/Eden-Map"
     },
     {
       title: "Agrymax",
-      imgns: [Agrymax1, Agrymax2, Agrymax3],
+      media: [
+        { type: 'image', src: Agrymax1, format: 'pc' },
+        { type: 'image', src: Agrymax2, format: 'pc' },
+        { type: 'image', src: Agrymax3, format: 'pc' },
+      ],
       desc: "Plataforma de Big Data e Ciência de Dados voltada ao agronegócio, fornecendo análises climáticas preditivas e balanço hídrico para otimização de plantios em todo o Brasil.",
       tech: ["React", "Python", "Flask", "MySQL"],
       link: "https://www.agrymax.com.br/login"
     },
     {
       title: "Dórica Vitrine",
-      imgns: [doricaMobile0, doricaMobile1, doricaPC],
+      media: [
+        { type: 'image', src: doricaMobile0, format: 'mobile' },
+        { type: 'image', src: doricaMobile1, format: 'mobile' },
+        { type: 'image', src: doricaPC, format: 'pc' },
+      ],
       desc: "Plataforma de visualização dos produtos mais vendidos dos mais de 20 catalogos de diferentes fabricas representados pela Dórica representações.",
       tech: ["react", "CSS", "JavaScript"],
       link: "https://dieghonm.github.io/Dorica-Vitrine/"
     },
     {
       title: "Karaokê Finder",
-      imgns: [hit_finder1, hit_finder2,hit_finder3,hit_finder4],
+      media: [
+        { type: 'image', src: hit_finder1, format: 'mobile' },
+        { type: 'image', src: hit_finder2, format: 'mobile' },
+        { type: 'image', src: hit_finder3, format: 'mobile' },
+        { type: 'image', src: hit_finder4, format: 'mobile' },
+      ],
       desc: "App mobile para busca e organização de músicas de karaokê com sistema de favoritos e filtros inteligentes.",
       tech: ["React Native", "Expo", "Context API"],
       link: "https://github.com/Dieghonm/hit_finder"
@@ -56,19 +76,21 @@ function Projects() {
   ];
 
   const buildMediaItems = (project) => {
-    const videoItems = (project.videos || []).map((videoId) => ({
-      type: 'video',
-      videoId,
-      alt: `${project.title} - video`,
-    }));
-
-    const imageItems = (project.imgns || []).map((image) => ({
-      type: 'image',
-      image,
-      alt: `${project.title} - imagem`,
-    }));
-
-    return [...videoItems, ...imageItems];
+    return (project.media || []).map((item) => {
+      if (item.type === 'video') {
+        return {
+          type: 'video',
+          videoId: item.videoId,
+          alt: `${project.title} - video`,
+        };
+      }
+      return {
+        type: 'image',
+        image: item.src,
+        format: item.format || 'mobile',
+        alt: `${project.title} - imagem`,
+      };
+    });
   };
 
   return (
@@ -114,7 +136,7 @@ function Projects() {
                   rel="noopener noreferrer"
                   className="project-link"
                 >
-                  VER CÓDIGO →
+                  VER PROJETO →
                 </a>
               </div>
             </div>

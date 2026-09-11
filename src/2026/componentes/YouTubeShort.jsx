@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import '../styles/YouTubeShort.css';
 
 let ytApiPromise = null;
@@ -19,10 +19,22 @@ function loadYouTubeApi() {
   return ytApiPromise;
 }
 
-function YouTubeShort({ videoId, title = 'YouTube video player', onPlay, onPause }) {
+const YouTubeShort = forwardRef(function YouTubeShort(
+  { videoId, title = 'YouTube video player', onPlay, onPause },
+  ref
+) {
   const containerRef = useRef(null);
   const playerRef = useRef(null);
   const elementId = useRef(`yt-player-${videoId}-${Math.random().toString(36).slice(2)}`);
+
+  // Permite que o Carousel pause o vídeo de fora (ex: ao clicar em next/prev)
+  useImperativeHandle(ref, () => ({
+    pause: () => {
+      if (playerRef.current && playerRef.current.pauseVideo) {
+        playerRef.current.pauseVideo();
+      }
+    },
+  }));
 
   useEffect(() => {
     let destroyed = false;
@@ -60,6 +72,6 @@ function YouTubeShort({ videoId, title = 'YouTube video player', onPlay, onPause
       <div id={elementId.current} ref={containerRef} className="youtube-short-iframe" title={title} />
     </div>
   );
-}
+});
 
 export default YouTubeShort;

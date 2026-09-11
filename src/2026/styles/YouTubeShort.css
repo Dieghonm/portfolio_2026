@@ -1,8 +1,8 @@
 .youtube-short-wrapper {
   position: relative;
-  width: 90%;
-  /* max-width: 360px; */
+  height: 100%;
   aspect-ratio: 7 / 16;
+  max-width: 100%;
   margin: 0 auto;
   border-radius: 12px;
   overflow: hidden;

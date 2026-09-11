@@ -1,4 +1,3 @@
-
 .carousel {
   position: relative;
   display: flex;
@@ -23,13 +22,45 @@
   box-sizing: border-box;
 }
 
-.carousel-slide img {
+.carousel-slide-group {
+  display: flex;
   width: 100%;
-  height: 280px;
-  object-fit: cover;
+  height: 300px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  overflow: hidden;
+  
+}
+
+.carousel-slide-group .carousel-media {
   border-radius: 8px;
   display: block;
   border: 3px solid #23244d;
+  
+}
+
+.carousel-slide-group .carousel-media.format-mobile {
+  height: 100%;
+  width: 100%;
+  flex: 1 1 0;
+  min-width: 0;
+  object-fit: cover;
+  
+}
+
+.carousel-slide-group .carousel-media.format-pc {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+  
+}
+
+.carousel-slide-group .youtube-short-wrapper {
+  flex-shrink: 0;
+  width: 120px;
+
 }
 
 .carousel-btn {
@@ -50,22 +81,6 @@
 .carousel-btn:hover {
   background: var(--color-primary);
   transform: scale(1.1);
-}
-
-.carousel-media {
-  width: 100%;
-  height: 280px;
-  border-radius: 8px;
-  display: block;
-}
-
-.carousel-slide img.carousel-media {
-  object-fit: cover;
-}
-
-.carousel-video {
-  border: none;
-  background: #000;
 }
 
 .carousel-btn.prev { margin-right: 1rem; }
