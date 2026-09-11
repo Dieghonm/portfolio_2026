@@ -1,6 +1,6 @@
 .hero {
     min-height: 100vh;
-    padding: 4rem 5% 5rem;
+    padding: 4rem 5% 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -46,6 +46,7 @@
 }
 
 .hero-badge {
+    margin-top: 40px;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -73,6 +74,7 @@
 }
 
 .hero-title {
+    margin-top: 60px;
     font-size: 5rem;
     font-weight: 900;
     line-height: 1;
@@ -190,10 +192,9 @@
     box-shadow: var(--shadow-brutal) var(--color-primary);
 }
 
-/* Section */
 section {
     padding: 5rem 5%;
-    scroll-margin-top: 80px; /* Para não ficar atrás do navbar fixo */
+    scroll-margin-top: 80px;
 }
 
 .section-header {
@@ -228,7 +229,7 @@ section {
 /* Responsive - Tablet */
 @media (max-width: 768px) {
     .hero {
-        padding: 8rem 4% 4rem;
+        padding: 8rem 4% 3rem;
         min-height: auto;
     }
 
@@ -274,7 +275,7 @@ section {
 /* Responsive - Mobile */
 @media (max-width: 480px) {
     .hero {
-        padding: 7rem 4% 3rem;
+        padding: 7rem 4% 2rem;
     }
 
     .hero-title {

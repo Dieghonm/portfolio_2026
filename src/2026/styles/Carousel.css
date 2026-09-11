@@ -75,7 +75,8 @@
   flex-shrink: 0;
   z-index: 2;
   transition: all 0.2s ease;
-  margin: 0px 5px
+  margin: 0px 5px;
+  padding: 5px 0px 
 }
 
 .carousel-btn:hover {

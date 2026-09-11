@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import '../styles/Carousel.css';
 import YouTubeShort from './YouTubeShort';
 
@@ -52,6 +53,10 @@ function Carousel({ items, autoPlay = true, interval = 300000 }) {
   const timeoutRef = useRef(null);
   const activeVideoRef = useRef(null);
 
+  // Trava para ignorar cliques repetidos enquanto uma transição está em andamento.
+  // É isso que evita o índice "passar" do array e sumir com as imagens.
+  const isAnimatingRef = useRef(false);
+
   const stopActiveVideo = () => {
     if (activeVideoRef.current && activeVideoRef.current.pause) {
       activeVideoRef.current.pause();
@@ -61,13 +66,24 @@ function Carousel({ items, autoPlay = true, interval = 300000 }) {
   };
 
   const goNext = () => {
+    if (isAnimatingRef.current) return;
+    isAnimatingRef.current = true;
     stopActiveVideo();
     setIndex((prev) => prev + 1);
   };
 
   const goPrev = () => {
+    if (isAnimatingRef.current) return;
+    isAnimatingRef.current = true;
     stopActiveVideo();
     setIndex((prev) => prev - 1);
+  };
+
+  // Libera a trava quando a transição CSS realmente termina de animar.
+  const handleTrackTransitionEnd = () => {
+    if (transitionOn) {
+      isAnimatingRef.current = false;
+    }
   };
 
   useEffect(() => {
@@ -83,6 +99,9 @@ function Carousel({ items, autoPlay = true, interval = 300000 }) {
       const t = setTimeout(() => {
         setTransitionOn(false);
         setIndex(1);
+        // Esse salto é instantâneo (sem transição), então onTransitionEnd
+        // não dispara aqui — liberamos a trava manualmente.
+        isAnimatingRef.current = false;
       }, 500);
       return () => clearTimeout(t);
     }
@@ -90,6 +109,7 @@ function Carousel({ items, autoPlay = true, interval = 300000 }) {
       const t = setTimeout(() => {
         setTransitionOn(false);
         setIndex(slides.length);
+        isAnimatingRef.current = false;
       }, 500);
       return () => clearTimeout(t);
     }
@@ -143,12 +163,15 @@ function Carousel({ items, autoPlay = true, interval = 300000 }) {
   return (
     <div className="carousel">
       {canLoop && (
-        <button className="carousel-btn prev" onClick={goPrev} aria-label="Anterior">‹</button>
+        <button className="carousel-btn prev" onClick={goPrev} aria-label="Anterior">
+          <FaChevronLeft />
+        </button>
       )}
 
       <div className="carousel-viewport">
         <div
           className="carousel-track"
+          onTransitionEnd={handleTrackTransitionEnd}
           style={{
             transform: `translateX(${offset}%)`,
             transition: transitionOn ? 'transform 0.5s ease' : 'none',
@@ -168,7 +191,9 @@ function Carousel({ items, autoPlay = true, interval = 300000 }) {
       </div>
 
       {canLoop && (
-        <button className="carousel-btn next" onClick={goNext} aria-label="Próximo">›</button>
+        <button className="carousel-btn next" onClick={goNext} aria-label="Próximo">
+          <FaChevronRight />
+        </button>
       )}
     </div>
   );

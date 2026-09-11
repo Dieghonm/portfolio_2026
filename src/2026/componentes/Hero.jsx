@@ -5,10 +5,7 @@ function Hero() {
   return (
     <section className="hero" id="hero">
       <div className="hero-content">
-        <div className="hero-badge">
-          <span className="badge-dot"></span>
-          DISPONÍVEL PARA PROJETOS
-        </div>
+
 
         <h1 className="hero-title">
           DIEGHO<br />
@@ -21,10 +18,15 @@ function Hero() {
         </div>
 
         <div className="hero-description">
-          <p>
-            Transformo ideias em produtos digitais excepcionais.
-            desenvolvendo apps mobile do design ao deploy com React Native, TypeScript e Python.
-          </p>
+        <p>
+          Transformo ideias em produtos digitais: crio soluções para problemas 
+          cotidianos, do entendimento do problema ao desenvolvimento final da 
+          aplicação, com React, React Native, Python e análise de dados para 
+          simplificar processos. Gosto de entender o contexto antes de sair 
+          codando — cada projeto tem suas particularidades, e a solução certa 
+          quase sempre vem de ouvir bem o problema antes de escrever a primeira 
+          linha de código.
+        </p>
         </div>
 
         <div className="hero-stats">
@@ -49,6 +51,10 @@ function Hero() {
           <a href="#contact" className="btn btn-secondary">
             ENTRAR EM CONTATO
           </a>
+        </div>
+                <div className="hero-badge">
+          <span className="badge-dot"></span>
+          DISPONÍVEL PARA PROJETOS
         </div>
       </div>
     </section>
