@@ -28,15 +28,15 @@ function Skills() {
       icon: Server,
       title: "Backend & Database",
       items: [
-        { name: "Java", description: "Linguagem robusta utilizada em aplicações e sistemas backend." },
-        { name: "Spring", description: "Framework Java para construção de aplicações backend." },
+        { name: "Node.js", description: "Runtime JavaScript para desenvolvimento de aplicações backend." },
         { name: "Python", description: "Linguagem versátil para backend, automação e dados." },
         { name: "FastAPI", description: "Framework Python moderno para criação de APIs rápidas." },
         { name: "Django", description: "Framework Python completo para desenvolvimento web." },
-        { name: "Node.js", description: "Runtime JavaScript para desenvolvimento de aplicações backend." },
+        { name: "Java", description: "Linguagem robusta utilizada em aplicações e sistemas backend." },
+        { name: "Spring", description: "Framework Java para construção de aplicações backend." },
+        { name: "REST APIs", description: "Arquitetura para comunicação entre aplicações através de HTTP." },
         { name: "PostgreSQL", description: "Banco de dados relacional open source avançado." },
         { name: "MongoDB", description: "Banco de dados NoSQL orientado a documentos." },
-        { name: "REST APIs", description: "Arquitetura para comunicação entre aplicações através de HTTP." },
         { name: "JWT", description: "Padrão utilizado para autenticação e troca segura de informações." }
       ]
     },
@@ -61,7 +61,8 @@ function Skills() {
         { name: "CI/CD", description: "Automação de integração, testes e entrega contínua." },
         { name: "Figma", description: "Ferramenta colaborativa para design e prototipação de interfaces." },
         { name: "Jest", description: "Framework JavaScript para testes automatizados." },
-        { name: "Cypress", description: "Framework para testes end-to-end de aplicações web." }
+        { name: "Cypress", description: "Framework para testes end-to-end de aplicações web." },
+        { name: "AI-assisted development", description: "IA aplicada ao desenvolvimento" }
       ]
     }
   ];

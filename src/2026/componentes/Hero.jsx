@@ -14,18 +14,16 @@ function Hero() {
 
         <div className="hero-subtitle">
           <p className="subtitle-main">Full Stack Developer</p>
-          <p className="subtitle-focus">Especialista em Frontend & Mobile</p>
+          <p className="subtitle-focus">Foco e profundidade técnica em Frontend & Mobile</p>
         </div>
 
         <div className="hero-description">
         <p>
-          Transformo ideias em produtos digitais: crio soluções para problemas 
-          cotidianos, do entendimento das necessidades ao desenvolvimento final da 
-          aplicação, com React, React Native, Python e análise de dados para 
-          simplificar processos. Gosto de entender o contexto antes de sair 
-          codando — cada projeto tem suas particularidades, e a solução certa 
-          quase sempre vem de ouvir bem o problema antes de escrever a primeira 
-          linha de código.
+          Transformo problemas e necessidades reais em produtos digitais. 
+          Gosto de entender o contexto antes de sair codando, porque cada projeto tem suas particularidades 
+          e a melhor solução começa por entender bem o problema. Com experiência em desenvolvimento Full Stack 
+          e profundidade técnica em Frontend, construo aplicações web e mobile modernas, buscando equilíbrio 
+          entre experiência do usuário, qualidade técnica e simplicidade.
         </p>
         </div>
 

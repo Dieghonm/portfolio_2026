@@ -39,7 +39,7 @@ function Contact() {
         </h2>
 
         <p className="section-subtitle">
-          Disponível para projetos remotos, híbridos ou presenciais no Rio de Janeiro
+          Aberto a oportunidades como Desenvolvedor, em posições remotas, híbridas ou presenciais no Rio de Janeiro.
         </p>
       </div>
 
